@@ -14,9 +14,12 @@ public class PlayerControllerRigidbody : MonoBehaviour {
 
     private Rigidbody rb;
 
+    public Camera m_Camera;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame
@@ -31,6 +34,7 @@ public class PlayerControllerRigidbody : MonoBehaviour {
         ApplyInput(moveAxis, turnAxis);
 	}
 
+    
     private void ApplyInput(float moveInput,
                             float turnInput)
     {
@@ -48,6 +52,11 @@ public class PlayerControllerRigidbody : MonoBehaviour {
 
     private void Turn(float input)
     {
-        transform.Rotate(0, input * rotationRate * Time.deltaTime, 0);
+        //Vector3 m_CameraForward = m_Camera.transform.forward;
+        //m_CameraForward.y = 0;
+        //m_CameraForward.Normalize();
+        //transform.LookAt(transform.position + m_CameraForward);
+        transform.Rotate(0, (-input) * rotationRate * Time.deltaTime, 0);
+        //rb.AddForce(transform.right * input * moveSpeed, ForceMode.Force);
     }
 }
