@@ -10,6 +10,7 @@ public class Bullet_Emitter : MonoBehaviour {
 
     //Get the bullet prefab from the component inspector
     public GameObject Bullet;
+    public GameObject Player;
 
     //bullet speed
     public float Bullet_Forward_Force;

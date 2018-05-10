@@ -33,8 +33,9 @@ public class PlayerControllerRigidbody : MonoBehaviour {
 
         ApplyInput(moveAxis, turnAxis);
 	}
-
     
+  
+
     private void ApplyInput(float moveInput,
                             float turnInput)
     {
@@ -52,11 +53,11 @@ public class PlayerControllerRigidbody : MonoBehaviour {
 
     private void Turn(float input)
     {
-        //Vector3 m_CameraForward = m_Camera.transform.forward;
-        //m_CameraForward.y = 0;
-        //m_CameraForward.Normalize();
-        //transform.LookAt(transform.position + m_CameraForward);
+        Vector3 m_CameraForward = m_Camera.transform.forward;
+        m_CameraForward.y = 0;
+        m_CameraForward.Normalize();
+        transform.LookAt(transform.position + m_CameraForward);
         transform.Rotate(0, (-input) * rotationRate * Time.deltaTime, 0);
-        //rb.AddForce(transform.right * input * moveSpeed, ForceMode.Force);
+        rb.AddForce(transform.right * input * moveSpeed, ForceMode.Force);
     }
 }
