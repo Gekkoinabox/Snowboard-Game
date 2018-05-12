@@ -6,7 +6,7 @@ public class PlayerControllerRigidbody : MonoBehaviour {
 
     private string moveInputAxis = "Vertical";
     private string turnInputAxis = "Horizontal";
-
+    
     public bool isMaxSpeed = false;
     public float maxSpeed = 100;
     public float rotationRate = 360;

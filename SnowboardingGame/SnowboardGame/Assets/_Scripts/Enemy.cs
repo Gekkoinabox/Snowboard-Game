@@ -4,12 +4,49 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-    public Transform target;
-    public Transform myTransform;
 
-	// Update is called once per frame
-	void Update () {
-        transform.LookAt(target);
-        transform.Translate(Vector3.forward * 5 * Time.deltaTime);
+    public GameObject player;
+    public float health = 50f;
+
+    //private bool dead;
+
+    private void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+        GetComponent<UnityEngine.AI.NavMeshAgent>().destination = player.transform.position;
+        //CheckIfDead(health);
 	}
+
+    //void CheckIfDead(float health)
+    //{
+    //    if (health <= 0)
+    //    {
+    //        dead = true;
+    //        Destroy(gameObject);
+    //    }
+    //    else
+    //    {
+    //        dead = false;
+    //    }
+    //}
+
+    public void Damage(float amount) //Make public so gun can access it 
+    {
+        health -= amount;
+
+        if (health <= 0f)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
+    }
 }
+
