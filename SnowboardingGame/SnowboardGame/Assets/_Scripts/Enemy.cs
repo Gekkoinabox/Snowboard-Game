@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour {
 
 
     public GameObject player;
-    public float health = 50f;
+    public float startHealth = 100f;
+    private float health = 100f;
+
+    public Image healthBar;
 
     //private bool dead;
 
-    private void Start()
+    void Start()
     {
-
+        health = startHealth;
     }
 
     // Update is called once per frame
@@ -37,6 +41,7 @@ public class Enemy : MonoBehaviour {
     public void Damage(float amount) //Make public so gun can access it 
     {
         health -= amount;
+        healthBar.fillAmount = health / startHealth;
 
         if (health <= 0f)
         {
