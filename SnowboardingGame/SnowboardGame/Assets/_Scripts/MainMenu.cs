@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour {
 
     public void PlayGame() //Loads the game
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //Load the next scene in the build
+        SceneManager.LoadScene(1); //Load the next scene in the build
     }
 
     public void QuitGame() //Quit Game function

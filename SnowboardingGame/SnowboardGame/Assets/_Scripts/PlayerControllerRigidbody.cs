@@ -1,16 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement; //Scene management so we can switch scenes
 
 public class PlayerControllerRigidbody : MonoBehaviour {
 
     private string moveInputAxis = "Vertical";
     private string turnInputAxis = "Horizontal";
-    
+
+    private float startHealth = 100f;
+    public float health = 100f;
     public bool isMaxSpeed = false;
     public float maxSpeed = 100;
     public float rotationRate = 360;
     public float moveSpeed = 10;
+    public Image healthBar;
 
     private Rigidbody rb;
 
@@ -29,6 +34,12 @@ public class PlayerControllerRigidbody : MonoBehaviour {
         if (moveSpeed >= maxSpeed)
         {
             isMaxSpeed = true;
+        }
+
+        if(Input.GetButton("Cancel"))
+        {
+            Application.Quit();
+            Debug.Log("The Application will exit");
         }
 
         ApplyInput(moveAxis, turnAxis);
@@ -57,7 +68,23 @@ public class PlayerControllerRigidbody : MonoBehaviour {
         m_CameraForward.y = 0;
         m_CameraForward.Normalize();
         transform.LookAt(transform.position + m_CameraForward);
-        transform.Rotate(0, (-input) * rotationRate * Time.deltaTime, 0);
+        transform.Rotate(0, input * rotationRate * Time.deltaTime, 0);
         rb.AddForce(transform.right * input * moveSpeed, ForceMode.Force);
+    }
+
+    public void Damage(float damage)
+    {
+        health -= damage;
+        healthBar.fillAmount = health / startHealth;
+        if (health <= 0f)
+        {
+            GameOver();
+        }
+    }
+        
+    void GameOver()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        SceneManager.LoadScene(2); //Load the Main Menu
     }
 }

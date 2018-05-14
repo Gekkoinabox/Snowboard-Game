@@ -6,9 +6,14 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour {
 
 
-    public GameObject player;
+   //GameObject player;
     public float startHealth = 100f;
-    private float health = 100f;
+    float health = 100f;
+    float damage = 10f;
+    float waitTime = 2f;
+
+    float fireRate = 1f;
+    float timeUntilNextDamage = 0f;
 
     public Image healthBar;
 
@@ -18,25 +23,11 @@ public class Enemy : MonoBehaviour {
     {
         health = startHealth;
     }
-
+        
     // Update is called once per frame
     void Update () {
-        GetComponent<UnityEngine.AI.NavMeshAgent>().destination = player.transform.position;
-        //CheckIfDead(health);
+        GetComponent<UnityEngine.AI.NavMeshAgent>().destination = GameObject.Find("Player").GetComponent<PlayerControllerRigidbody>().transform.position;
 	}
-
-    //void CheckIfDead(float health)
-    //{
-    //    if (health <= 0)
-    //    {
-    //        dead = true;
-    //        Destroy(gameObject);
-    //    }
-    //    else
-    //    {
-    //        dead = false;
-    //    }
-    //}
 
     public void Damage(float amount) //Make public so gun can access it 
     {
@@ -52,6 +43,16 @@ public class Enemy : MonoBehaviour {
     void Die()
     {
         Destroy(gameObject);
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player" && Time.time >= timeUntilNextDamage)
+        {
+            Debug.Log("COLLIDING AND TAKING DAMAGE");
+            timeUntilNextDamage = Time.time + 1f / fireRate;
+            collision.gameObject.GetComponent<PlayerControllerRigidbody>().Damage(10f);
+        }
     }
 }
 
