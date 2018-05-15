@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour {
 
     void Die()
     {
+        GameObject.Find("Scoreobject").GetComponent<Score>().AddScore(10);
         Destroy(gameObject);
     }
 
@@ -49,6 +50,7 @@ public class Enemy : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player" && Time.time >= timeUntilNextDamage)
         {
+            
             Debug.Log("COLLIDING AND TAKING DAMAGE");
             timeUntilNextDamage = Time.time + 1f / fireRate;
             collision.gameObject.GetComponent<PlayerControllerRigidbody>().Damage(10f);

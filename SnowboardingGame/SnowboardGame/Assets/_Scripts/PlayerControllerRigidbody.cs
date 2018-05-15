@@ -17,13 +17,15 @@ public class PlayerControllerRigidbody : MonoBehaviour {
     public float moveSpeed = 10;
     public Image healthBar;
 
-    private Rigidbody rb;
+    bool levelCompleted = false;
 
+    private Rigidbody rb;
     public Camera m_Camera;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        GetComponent<Score>().loadScore();
         
     }
 
@@ -69,7 +71,7 @@ public class PlayerControllerRigidbody : MonoBehaviour {
         m_CameraForward.Normalize();
         transform.LookAt(transform.position + m_CameraForward);
         transform.Rotate(0, input * rotationRate * Time.deltaTime, 0);
-        rb.AddForce(transform.right * input * moveSpeed, ForceMode.Force);
+        rb.AddForce(-(transform.right) * input * moveSpeed, ForceMode.Force);
     }
 
     public void Damage(float damage)
@@ -86,5 +88,16 @@ public class PlayerControllerRigidbody : MonoBehaviour {
     {
         Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(2); //Load the Main Menu
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Objective")
+        {
+            Debug.Log("Objective Complete");
+            levelCompleted = true;
+            SceneManager.LoadScene(1);
+            GetComponent<Score>().saveScores();
+        }
     }
 }
