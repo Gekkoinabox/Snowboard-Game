@@ -10,9 +10,14 @@ public class Gun : MonoBehaviour {
     public Camera fpsCam; //Set the camera we are going to use to shoot the raycast from
     public ParticleSystem muzzleFlash; //Set the particle system for the muzzle flash
     public GameObject impactEffect; //Set the game object for the ground impacts
+    AudioSource gunShot;
 
     private float nextTimeToFire = 0f; //Set the net time to fire delay so we dont shoot constantly in a single beam
     
+    void Start()
+    {
+        gunShot = GetComponent<AudioSource>();
+    }
 
 	// Update is called once per frame
 	void Update () {
@@ -21,6 +26,7 @@ public class Gun : MonoBehaviour {
         {
             nextTimeToFire = Time.time + 1f / fireRate; //Reset the time to fire next
             Shoot(); //Call the shoot function
+            gunShot.Play();
         }
 	}
 

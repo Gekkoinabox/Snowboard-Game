@@ -2,31 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Score : MonoBehaviour {
     int score;
     int highScore;
     public Text scoreText;
     public Text highScoreTect;
-    string scoreString = "Score";
-    string highScoreString = "HighScore";
     GameObject scoreobject;
+    bool gameIsPlaying = false;
    
 
     // Use this for initialization
     void Start () {
-        score = 0;
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        setScoreText();
+        if (gameIsPlaying == true)
+        {
+            setScoreText();
+        }
 	}
 
     public void AddScore(int amount)
     {
         score += amount;
     }
+    
 
     void setScoreText()
     {
@@ -35,22 +38,24 @@ public class Score : MonoBehaviour {
 
     public void resetScore()
     {
+        
         score = 0;
-        PlayerPrefs.SetInt(scoreString, score);
+        PlayerPrefs.SetInt("Score", score);
     }
 
     public void saveScores() 
     {
-        PlayerPrefs.SetInt(scoreString, score);
-        if (score > highScore)
+        PlayerPrefs.SetInt("Score", score);
+        if (PlayerPrefs.GetInt("Score") > PlayerPrefs.GetInt("HighScore"));
         {
-            highScore = score;
+            PlayerPrefs.SetInt("HighScore", PlayerPrefs.GetInt("Score"));
         }
-        PlayerPrefs.SetInt(highScoreString, highScore);
+        PlayerPrefs.SetInt("HighScore", 0);
     }
 
     public void loadScore()
     {
-        score = PlayerPrefs.GetInt(scoreString, score);
+        gameIsPlaying = true;
+        score = PlayerPrefs.GetInt("Score", score);
     }
 }

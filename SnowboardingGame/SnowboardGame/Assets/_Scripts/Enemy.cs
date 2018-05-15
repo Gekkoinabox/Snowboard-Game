@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour {
 
     void Die()
     {
-        GameObject.Find("Scoreobject").GetComponent<Score>().AddScore(10);
+        GameObject.Find("Player").GetComponent<Score>().AddScore(10);
         Destroy(gameObject);
     }
 
