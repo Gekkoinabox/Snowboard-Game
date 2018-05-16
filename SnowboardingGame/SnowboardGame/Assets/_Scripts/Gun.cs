@@ -4,7 +4,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour {
 
     public float damage = 10f; //Set damage
-    public float range = 100f; //Set range you can shoot
+    public float range = 300f; //Set range you can shoot
     public float fireRate = 15f; //Set rate of fire for the gun
     
     public Camera fpsCam; //Set the camera we are going to use to shoot the raycast from

@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour {
 
 
    //GameObject player;
     public float startHealth = 100f;
-    float health = 100f;
-    float damage = 10f;
+    public float health = 100f;
+    public float damage = 10f;
     float waitTime = 2f;
 
     float fireRate = 1f;
@@ -27,9 +28,18 @@ public class Enemy : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         GetComponent<UnityEngine.AI.NavMeshAgent>().destination = GameObject.Find("Player").GetComponent<PlayerControllerRigidbody>().transform.position;
+
 	}
 
-    public void Damage(float amount) //Make public so gun can access it 
+    protected virtual void setEnemy()
+    {
+        startHealth = 100f;
+        health = 100f;
+        damage = 10f;
+        waitTime = 2f;
+    }
+
+    public virtual void Damage(float amount) //Make public so gun can access it 
     {
         health -= amount;
         healthBar.fillAmount = health / startHealth;
@@ -40,13 +50,13 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    void Die()
+    protected virtual void Die()
     {
         GameObject.Find("Player").GetComponent<Score>().AddScore(10);
         Destroy(gameObject);
     }
 
-    private void OnCollisionStay(Collision collision)
+    protected virtual void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == "Player" && Time.time >= timeUntilNextDamage)
         {
