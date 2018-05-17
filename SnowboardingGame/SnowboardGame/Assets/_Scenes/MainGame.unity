@@ -428,7 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  range: 100
+  range: 300
   fireRate: 15
   fpsCam: {fileID: 1029338448}
   muzzleFlash: {fileID: 198643664}
@@ -1674,7 +1674,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 184991804}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 497.68506, z: -0.0010521886}
+  m_LocalPosition: {x: 0, y: 498.8487, z: -0.0010521886}
   m_LocalScale: {x: 2.1548831, y: 2.1548822, z: 2.1548831}
   m_Children:
   - {fileID: 1632116177}
@@ -3852,7 +3852,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 661950093}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -689, y: 445, z: 0}
+  m_LocalPosition: {x: -689, y: 446.16364, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 832041043}
@@ -6098,7 +6098,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1048653801}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 412.5, y: 220, z: 0}
+  m_LocalPosition: {x: 412.5, y: 220.5, z: 0}
   m_LocalScale: {x: 0.4296875, y: 0.4296875, z: 0.4296875}
   m_Children:
   - {fileID: 661950094}
