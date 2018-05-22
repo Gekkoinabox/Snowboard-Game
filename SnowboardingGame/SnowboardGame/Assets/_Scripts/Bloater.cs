@@ -11,16 +11,4 @@ public class Bloater : Enemy {
         health = 500f;
         damage = 50f;
     }
-
-    public override void Damage(float amount)
-    {
-        base.Damage(amount);
-        health -= amount;
-        healthBar.fillAmount = health / startHealth;
-
-        if (health <= 0f)
-        {
-            Die();
-        }
-    }
 }

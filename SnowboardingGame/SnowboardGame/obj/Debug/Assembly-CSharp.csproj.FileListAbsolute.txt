@@ -38,3 +38,5 @@ U:\Github\Snowboard-Game\SnowboardingGame\SnowboardGame\Temp\bin\Debug\UnityEngi
 U:\Github\Snowboard-Game\SnowboardingGame\SnowboardGame\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 U:\Github\Snowboard-Game\SnowboardingGame\SnowboardGame\obj\Debug\Assembly-CSharp.dll
 U:\Github\Snowboard-Game\SnowboardingGame\SnowboardGame\obj\Debug\Assembly-CSharp.pdb
+Q:\Snowboard-Game\SnowboardingGame\SnowboardGame\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+Q:\Snowboard-Game\SnowboardingGame\SnowboardGame\obj\Debug\Assembly-CSharp.dll

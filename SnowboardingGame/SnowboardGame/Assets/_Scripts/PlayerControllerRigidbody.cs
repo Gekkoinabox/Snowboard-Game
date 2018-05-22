@@ -11,6 +11,7 @@ public class PlayerControllerRigidbody : MonoBehaviour {
 
     private float startHealth = 100f;
     public float health = 100f;
+
     public bool isMaxSpeed = false;
     public float maxSpeed = 100;
     public float rotationRate = 360;
@@ -26,7 +27,6 @@ public class PlayerControllerRigidbody : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody>();
         GetComponent<Score>().loadScore();
-        
     }
 
     // Update is called once per frame
@@ -47,8 +47,6 @@ public class PlayerControllerRigidbody : MonoBehaviour {
         ApplyInput(moveAxis, turnAxis);
 	}
     
-  
-
     private void ApplyInput(float moveInput,
                             float turnInput)
     {
@@ -87,7 +85,9 @@ public class PlayerControllerRigidbody : MonoBehaviour {
     void GameOver()
     {
         Cursor.lockState = CursorLockMode.None;
-        SceneManager.LoadScene(2); //Load the Main Menu
+        GetComponent<Score>().saveScores();
+        GetComponent<Score>().gameIsOver = true;
+        SceneManager.LoadScene(2); //Load the game over scene
     }
 
     private void OnCollisionEnter(Collision collision)
