@@ -26,7 +26,6 @@ public class PlayerControllerRigidbody : MonoBehaviour {
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        GetComponent<Score>().loadScore();
     }
 
     // Update is called once per frame

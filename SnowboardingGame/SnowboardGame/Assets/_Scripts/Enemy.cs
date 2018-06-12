@@ -11,7 +11,6 @@ public class Enemy : MonoBehaviour {
     public float startHealth = 100f;
     public float health = 100f;
     public float damage = 10f;
-    float waitTime = 2f;
 
     float fireRate = 1f;
     float timeUntilNextDamage = 0f;
@@ -36,7 +35,6 @@ public class Enemy : MonoBehaviour {
         startHealth = 100f;
         health = 100f;
         damage = 10f;
-        waitTime = 2f;
     }
 
     public virtual void Damage(float amount) //Make public so gun can access it 

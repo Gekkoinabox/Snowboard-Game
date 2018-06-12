@@ -14,19 +14,25 @@ public class Score : MonoBehaviour {
     public bool gameIsOver = false; //set game over to false
     public bool inMenu = false; //set in menu false
 
-	// Update is called once per frame
-	void Update () {
+    void Start()
+    {
+        loadScore();
         if (inMenu == true)
         {
             resetScore();
         }
+        if (gameIsOver == true)
+        {
+            setScoreText();
+            showHighScore();
+        }
+    }
+
+	// Update is called once per frame
+	void Update () {
         if (gameIsPlaying == true)
         {
             setScoreText(); //Call function to refresh the score
-        }
-        if(gameIsOver == true)
-        {
-            showHighScore();
         }
 	}
 
@@ -53,11 +59,8 @@ public class Score : MonoBehaviour {
         PlayerPrefs.SetInt("Score", score);
         if (score > highScore) //If the players score is greater than the highscore
         {
-            PlayerPrefs.SetInt("HighScore", score); //set the highscore as the players score
-        } 
-        else
-        {
-            PlayerPrefs.SetInt("HighScore", highScore);
+            highScore = score;
+            PlayerPrefs.SetInt("HighScore", highScore); //set the highscore as the players score
         } 
     }
 
